@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import TOC from './components/TOC';
-import Content from './components/Content';
+import ReadContent from './components/ReadContent';
 import Subject from './components/Subject';
+import Control from './components/Control';
 
 
 
@@ -56,7 +57,12 @@ class App extends Component {
         }.bind(this)}
         data={this.state.contents}
         ></TOC>
-        <Content title={_title} desc={_desc}></Content>
+        <Control onChangeMode={function(_mode){
+          this.setState({
+            mode:_mode
+          });
+        }.bind(this)}></Control>
+        <ReadContent title={_title} desc={_desc}></ReadContent>
       </div>
     );
   }
