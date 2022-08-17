@@ -12,7 +12,7 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      mode:'read', //페이지 구분
+      mode:'create', //페이지 구분
       selected_contents_id:2,
       subject:{title:'WEB', sub:'wolrd wide web!'}, //상위 컴포넌트의 state값 초기화, subject 값을 state화
       welcome:{title:'Welcome', desc:'Hello, React!!'},
@@ -42,7 +42,10 @@ class App extends Component {
       }
       _article = <ReadContent title={_title} desc={_desc}></ReadContent>
     } else if(this.state.mode === 'create'){
-      _article= <CreateContent></CreateContent>
+      _article= <CreateContent onSubmit={function(_title, _desc){
+        //add contents to this.state.contents
+        console.log(_title, _desc);
+      }}></CreateContent>
     }
     return (
       <div className="App">
