@@ -3,7 +3,15 @@ import React, { Component } from 'react';
 //nav
 //TOC: Table Of Contents (목차)
 class TOC extends Component {
+    shouldComponentUpdate(newProps, newState){
+      if(this.props.data  === newProps.data){
+        return false;
+      }
+      return true;
+    }
+
     render() {
+      console.log('TOC render');
       var lists = [];
       var data = this.props.data;
       var i = 0;
