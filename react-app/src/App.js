@@ -11,6 +11,7 @@ import CreateContent from './components/CreateContent';
 class App extends Component {
   constructor(props){
     super(props);
+    this.max_content_id = 3;
     this.state = {
       mode:'create', //페이지 구분
       selected_contents_id:2,
@@ -44,8 +45,17 @@ class App extends Component {
     } else if(this.state.mode === 'create'){
       _article= <CreateContent onSubmit={function(_title, _desc){
         //add contents to this.state.contents
-        console.log(_title, _desc);
-      }}></CreateContent>
+        this.max_content_id = this.max_content_id+1;
+        // this.state.contents.push(
+        //   {id:this.max_content_id, title:_title, desc:_desc}
+        //   );
+        var _contents = this.state.contents.concat(
+          {id:this.max_content_id, title:_title, desc:_desc}
+        );
+        this.setState(
+          {contents:_contents}
+          );
+      }.bind(this)}></CreateContent>
     }
     return (
       <div className="App">
